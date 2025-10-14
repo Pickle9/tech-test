@@ -1,0 +1,23 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:1/postgres
+    username: postgres
+    password: postgres
+    hikari:
+      connection-timeout: 1000
+      login-timeout: 1
+  jpa:
+    show-sql: true
+
+db-state-check:
+  unavailability:
+    delay-ms: 5000
+
+scheduler:
+  time:
+    write:
+      delay: PT1S
+
+hazelcast:
+  mode: LOCAL
+  instance-name: hazelcast-instance
