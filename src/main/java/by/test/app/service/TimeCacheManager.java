@@ -21,6 +21,10 @@ public class TimeCacheManager {
     private final TimeService timeService;
 
     @Async(TIME_READER_ASYNC_POOL)
+    public void syncCacheWithDbAsync() {
+        syncCacheWithDb();
+    }
+
     public void syncCacheWithDb() {
         try {
             while (!timeCache.isEmpty()) {

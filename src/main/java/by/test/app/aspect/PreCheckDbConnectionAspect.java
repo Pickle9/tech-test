@@ -32,8 +32,8 @@ public class PreCheckDbConnectionAspect {
     @Value("${db-state-check.unavailability.delay-ms}")
     private Long unavailabilityCheckDelayMs;
 
-    @Around("@within(org.springframework.stereotype.Repository)")
-    public Object aroundRepository(ProceedingJoinPoint pjp) throws Throwable {
+    @Around("@within(by.test.app.annotation.PreCheckDbConnection)")
+    public Object aroundAnnotation(ProceedingJoinPoint pjp) {
         var dbStateInfo = dbStateInfoCache.get(DB_STATE_INFO_KEY);
         if (dbStateInfo == null) {
             dbStateInfo = new DbStateInfo()
@@ -68,6 +68,8 @@ public class PreCheckDbConnectionAspect {
                             .setLostConnectionTime(Instant.now()));
 
             throw new DbNotAvailableException(e);
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
         }
     }
 }

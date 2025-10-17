@@ -1,18 +1,10 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:1/postgres
-    username: postgres
-    password: postgres
     hikari:
       connection-timeout: 1000
       login-timeout: 1
   jpa:
     show-sql: true
-  flyway:
-    enabled: true
-    locations: classpath:db/migration
-    baseline-on-migrate: true
-
 db-state-check:
   unavailability:
     delay-ms: 5000
@@ -20,7 +12,7 @@ db-state-check:
 scheduler:
   time:
     write:
-      enabled: true
+      enabled: false
       delay: PT1S
 
 hazelcast:
